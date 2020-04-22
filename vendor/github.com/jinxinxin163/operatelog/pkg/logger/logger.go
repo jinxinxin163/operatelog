@@ -3,7 +3,7 @@ package logger
 //	"log"
 
 const (
-	//operatelog version
+	//go-logger version
 	_VER string = "1.0.3"
 )
 

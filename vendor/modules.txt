@@ -1,0 +1,2 @@
+# github.com/jinxinxin163/operatelog v0.0.0-20200422082725-da171ba6fe61
+github.com/jinxinxin163/operatelog/pkg/logger

@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"go-logger/pkg/logger"
+	"github.com/jinxinxin163/operatelog/pkg/logger"
 	"os"
 	"time"
 )
