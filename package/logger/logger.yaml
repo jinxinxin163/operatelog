@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: testlog
+  namespace: logging
+  labels:
+    app: testlog
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: testlog
+    spec:
+      #imagePullSecrets:
+      #- name: harbor-registry-secret
+      containers:
+        - name: testlog
+          image: registry.cn-shanghai.aliyuncs.com/advantech-k8s/logger:v1.0.1
+          resources:
+            requests:
+              memory: "20Mi"
+              cpu: "10m"
+              ephemeral-storage: "100Mi"
+            limits:
+              memory: "100Mi"
+              cpu: "165m"
+              ephemeral-storage: "200Mi"
+          imagePullPolicy: Always
+          env:
+          - name: POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          volumeMounts:
+          - name: operatorlog
+            mountPath: /var/log/k8soperator
+      volumes:
+      - name: operatorlog
+        hostPath:
+          path: /var/log/k8soperator
+
+
